@@ -1,0 +1,126 @@
+{% load blog_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      padding: 0;
+      margin: 20px 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      padding: 50px 15vw;
+    }
+    
+    .container img {
+      width: 100%;
+      height: auto;
+    }
+
+    .thumbnail {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 45px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 35px;
+      font-weight: bold;
+    }
+
+    h3 {
+      font-size: 35px;
+      font-weight: bold;
+    }
+
+    h4 {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    h5 {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    h6 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 20px;
+    }
+
+    @media screen and (max-width: 480px) {
+      .container {
+        padding: 20px;
+      }
+
+      * {
+        margin: 10px 0;
+      }
+      h1 {
+        font-size: 40px;
+        font-weight: bold;
+      }
+
+      h2 {
+        font-size: 35px;
+        font-weight: bold;
+      }
+
+      h3 {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      h4 {
+        font-size: 25px;
+        font-weight: bold;
+      }
+
+      h5 {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      h6 {
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    {% for post in posts %}
+      <h1>{{post.title}}</h1>
+      <h6>{{post.created_at|date:"Y-m-d H:i"}}</h6>
+      <img src="{{post.thumbnail}}" loading="lazy" alt="" width="16" height="9" class="thumbnail">
+      <h6>{{post.description|convert_markdown|safe}}</h6>
+      <p>{{post.content|convert_markdown|safe}}</p>
+    {% endfor %}
+  </div>
+</body>
+</html>
